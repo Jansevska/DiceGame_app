@@ -11,11 +11,7 @@ function pageLoader(){
         btn.addEventListener('click', displayDices);
     }
     // same button adds score to scoreTotal ???
-
 }
-
-// addEventListener("click", (event) => {});
-// onclick = (event) => {};
 
 // Create a function to display Dice's numbers
 function displayDices(e){
@@ -60,7 +56,7 @@ function displayScore(dices){
     for (let [key,value] of Object.entries(diceCount)){
         if (key == 1){
             if (value >= 3){
-                score += 1000;
+                score += 900;
             } else {
                 score += 100*value;
             }
@@ -82,16 +78,45 @@ function displayScore(dices){
     let scoreRow = document.getElementById('score-display');
     let col=document.createElement('div')
     col.innerHTML = `Score: ${score}`
-    scoreRow.append(col)
+    scoreRow.append(col);
 }
+
+
+// for each click = round -> add score to totalScore ?????
+// round 1 = scoreTotal += score:300 -> scoreTotal:300
+// round 2 = scoreTotal += score:150 -> scoreTotal:450 (300 + 150) ...
+
+// document.getElementById('total-display').innerHTML = scoreTotal;
+// let totalScore = {};
+// function totalScore () {
+//     if (totalScore < 10000) {
+//         totalScore += points;
+//     } else {
+//         totalScore.innerHTML = '';
+//     }
+//     let col = document.createElemnet('div')
+//     col.innerHTML = `Grand Total: ${totalScore}`
+//     totalRow.append(col);
+// }
+
+
+
 
 // function displayScoreTotal(score){
 //     let totalScore = 0;
-//     totalScore += score;
+//     totalScore += score.Object.data; // eventListener by click??? can it be added to the same click because there's a relationship ?
 //     console.log(totalScore);
 
-//     let totalRow = document.getElementById('scoreTotal-display');
-//     let col=document.createElement('div')
-//     col.innerHTML = `Total Score: ${scoreTotal}`
-//     totalRow.append(col)
+//     let totalRow = document.getElementById('total-display');
+//     let colTotal=document.createElement('div')
+//     colTotal.innerHTML = `Total Score: ${totalScore}`
+//     totalRow.append(colTotal)
+// }
+
+// function clearScore(totalScore){
+//     console.log(totalScore);
+//     if (totalScore >= 10000) {
+//         setTimeout(() => alert("Congratulations! You've won!"), 0);
+//         totalScore.innerHTML = '';
+//     }
 // }
