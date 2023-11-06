@@ -26,7 +26,7 @@ function displayDices(e){
         for (let dice of dices){
             let col=document.createElement('div')
             col.className = 'col-2'
-            col.innerHTML = dice
+            col.innerHTML = `<h1><i class="bi bi-dice-${dice}-fill"></i></h1>`
             diceRow.append(col)
         }
         displayScore(dices)
@@ -75,48 +75,32 @@ function displayScore(dices){
         }
         }
     console.log(score);
+    totalScore(score)
     let scoreRow = document.getElementById('score-display');
     let col=document.createElement('div')
     col.innerHTML = `Score: ${score}`
     scoreRow.append(col);
 }
 
+function totalScore (points) {
+    totalRow = document.getElementById('total-display')
+    let currentPoints = parseInt(totalRow.innerHTML.split('Grand Total: ')[1])
+    console.log(currentPoints);
+    currentPoints += points
+    console.log(currentPoints);
+    totalRow.innerHTML = `Grand Total: ${currentPoints}`
+    clearScore(currentPoints)
+}
 
-// for each click = round -> add score to totalScore ?????
-// round 1 = scoreTotal += score:300 -> scoreTotal:300
-// round 2 = scoreTotal += score:150 -> scoreTotal:450 (300 + 150) ...
-
-// document.getElementById('total-display').innerHTML = scoreTotal;
-// let totalScore = {};
-// function totalScore () {
-//     if (totalScore < 10000) {
-//         totalScore += points;
-//     } else {
-//         totalScore.innerHTML = '';
-//     }
-//     let col = document.createElemnet('div')
-//     col.innerHTML = `Grand Total: ${totalScore}`
-//     totalRow.append(col);
-// }
-
-
-
-
-// function displayScoreTotal(score){
-//     let totalScore = 0;
-//     totalScore += score.Object.data; // eventListener by click??? can it be added to the same click because there's a relationship ?
-//     console.log(totalScore);
-
-//     let totalRow = document.getElementById('total-display');
-//     let colTotal=document.createElement('div')
-//     colTotal.innerHTML = `Total Score: ${totalScore}`
-//     totalRow.append(colTotal)
-// }
-
-// function clearScore(totalScore){
-//     console.log(totalScore);
-//     if (totalScore >= 10000) {
-//         setTimeout(() => alert("Congratulations! You've won!"), 0);
-//         totalScore.innerHTML = '';
-//     }
-// }
+function clearScore(totalScore){
+    console.log(totalScore);
+    if (totalScore >= 10000) {
+        setTimeout(() => alert("Congratulations! You've won!"), 0);
+        setTimeout(() => {
+            totalRow = document.getElementById('total-display')
+            totalRow.innerHTML = 'Grand Total: 0';
+            let scoreRow = document.getElementById('score-display');
+            scoreRow.innerHTML = '';
+        },5000)
+    }
+}
